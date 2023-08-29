@@ -30,4 +30,10 @@ public class DataServiceImpl implements DataService {
         redisUtil.set(CacheConstant.PROJECT_ACTIVE_SIGNAL,status);
         return new ResponseResult<>(200,"操作成功");
     }
+
+    @Override
+    public void exit() {
+        redisUtil.set(CacheConstant.PROJECT_ACTIVE_SIGNAL,"true");
+        System.exit(0);
+    }
 }

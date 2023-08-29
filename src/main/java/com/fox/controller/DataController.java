@@ -33,6 +33,6 @@ public class DataController {
     }
     @GetMapping("/exit")
     public void exit(){
-        System.exit(0);
+        dataService.exit();
     }
 }

@@ -19,7 +19,6 @@ public class CheckFlagAspect {
     public Object checkFlag(ProceedingJoinPoint joinPoint) throws Throwable {
         String flag = redisUtil.get(CacheConstant.PROJECT_ACTIVE_SIGNAL);
         if (flag != null && flag.equals("false")) {
-            redisUtil.set(CacheConstant.PROJECT_ACTIVE_SIGNAL,"true");
             log.info(joinPoint.getSignature().getName()+"已经阻止执行。");
             return null;
         }

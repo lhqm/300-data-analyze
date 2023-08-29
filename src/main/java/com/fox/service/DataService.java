@@ -11,4 +11,6 @@ public interface DataService {
     ResponseResult<?> addAccount(String account);
 
     ResponseResult<?> changeStatus(boolean b);
+
+    void exit();
 }
