@@ -17,9 +17,14 @@ public class CacheConstant {
     /**
      * 对局编号队列
      */
-    public static final String RECORD_ACCOUNT_QUEUE="queue:record:id";
+    public static final String RECORD_ACCOUNT_QUEUE_ZC="queue:record:zcId";
+    public static final String RECORD_ACCOUNT_QUEUE_JJC="queue:record:jjcId";
     /**
      * 对局编号唯一队列
      */
     public static final String RECORD_ACCOUNT_UNIQUE="queue:record:uniqueSet";
+    /**
+     * 项目存活标志
+     */
+    public static final String PROJECT_ACTIVE_SIGNAL="queue:status";
 }

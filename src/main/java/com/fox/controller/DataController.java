@@ -19,9 +19,20 @@ import org.springframework.web.bind.annotation.RestController;
 public class DataController {
     @Autowired
     private DataService dataService;
-
     @GetMapping("/seed/{account}")
     public ResponseResult<?> toAddAccount(@PathVariable String account){
         return dataService.addAccount(account);
+    }
+    @GetMapping("/stop")
+    public ResponseResult<?> stop(){
+        return dataService.changeStatus(false);
+    }
+    @GetMapping("/restart")
+    public ResponseResult<?> start(){
+        return dataService.changeStatus(true);
+    }
+    @GetMapping("/exit")
+    public void exit(){
+        System.exit(0);
     }
 }

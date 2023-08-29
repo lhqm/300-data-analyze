@@ -41,4 +41,36 @@ public class ApiFetch {
         }
     }
 
+    public static JSONArray getDetail(String session){
+        OkHttpClient client = new OkHttpClient().newBuilder()
+                .build();
+        MediaType mediaType = MediaType.parse("text/plain");
+        RequestBody body = RequestBody.create(mediaType, "");
+        Request request = new Request.Builder()
+                .url("https://m300battleapp.hhhoo.com/match/records?__Z_TheSessionID="+session)
+                .method("POST", body)
+                .addHeader("User-Agent", "Apifox/1.0.0 (https://www.apifox.cn)")
+                .addHeader("Accept", "*/*")
+                .addHeader("Host", "m300battleapp.hhhoo.com")
+                .addHeader("Connection", "keep-alive")
+                .build();
+        try {
+            Response response = client.newCall(request).execute();
+            String string = response.body().string();
+            JSONObject msg = JSONObject.parseObject(string).getJSONObject("MSG");
+            if (msg==null) return new JSONArray();
+            return msg.get("records")==null?new JSONArray():msg.getJSONArray("records");
+        } catch (IOException e) {
+            return new JSONArray();
+        }
+    }
+
+    public static void main(String[] args) {
+        JSONObject object = new JSONObject();
+        object.put("i",1);
+        object.put("j",3);
+        Double i= object.getDouble("i");
+        Double j= object.getDouble("j");
+        System.out.println(i/j);
+    }
 }

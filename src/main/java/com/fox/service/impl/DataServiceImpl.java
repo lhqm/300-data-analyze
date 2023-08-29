@@ -23,4 +23,11 @@ public class DataServiceImpl implements DataService {
         redisUtil.sAdd(CacheConstant.USER_ACCOUNT_QUEUE_UNIQUE,account);
         return new ResponseResult<>(200,"添加成功！");
     }
+
+    @Override
+    public ResponseResult<?> changeStatus(boolean b) {
+        String status=b?"true":"false";
+        redisUtil.set(CacheConstant.PROJECT_ACTIVE_SIGNAL,status);
+        return new ResponseResult<>(200,"操作成功");
+    }
 }
